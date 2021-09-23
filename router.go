@@ -14,10 +14,12 @@ type Router struct {
 	mux http.Handler
 }
 
-func (r *Router) CreateMux() {
-	r.mux = mux.NewRouter()
-} 
-
 func (r *Router) GetMux() http.Handler {
 	return r.mux
-} 
+}
+
+func NewRouter() *Router {
+	router := Router{mux: mux.NewRouter()}
+
+	return &router
+}
