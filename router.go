@@ -7,14 +7,14 @@ import (
 )
 
 type RouterInterface interface {
-	GetMux() http.Handler
+	GetMux() *mux.Router
 }
 
 type Router struct {
-	mux http.Handler
+	mux *mux.Router
 }
 
-func (r *Router) GetMux() http.Handler {
+func (r *Router) GetMux() *mux.Router {
 	return r.mux
 }
 
