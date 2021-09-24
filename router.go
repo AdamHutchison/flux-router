@@ -1,6 +1,7 @@
 package router
 
 import (
+	m "github.com/AdamHutchison/flux-router/middleware"
 	"github.com/gorilla/mux"
 )
 
@@ -17,7 +18,12 @@ func (r *Router) GetMux() *mux.Router {
 }
 
 func NewRouter() *Router {
-	router := Router{mux: mux.NewRouter()}
+	router := &Router{mux: mux.NewRouter()}
+	applyDefaultMiddleware(router)
 
-	return &router
+	return router
+}
+
+func applyDefaultMiddleware(r *Router) {
+	r.mux.Use(m.LoggingMiddleware)
 }
